@@ -1,0 +1,19 @@
+<Mod id="1e4c7229-7735-473d-8a38-98039e61a683" version="1">
+    <Properties>
+        <Name>Human only Goody Huts.</Name>
+        <Description>Disallow a.i. getting goody hut rewards.</Description>
+        <Teaser>Humans get goodies, a.i. does not.</Teaser>
+        <Authors>satoon101</Authors>
+        <CompatibleVersions>2.0</CompatibleVersions>
+    </Properties>
+
+    <Files>
+        <File>scripts/HumanOnlyGoodyHuts.lua</File>
+    </Files>
+
+    <Components>
+        <GameplayScripts>
+            <File>scripts/HumanOnlyGoodyHuts.lua</File>
+        </GameplayScripts>
+    </Components>
+</Mod>
