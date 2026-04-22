@@ -1,3 +1,10 @@
+-- ===========================================================================
+--  Human Only Goody Huts - Gameplay Script
+--  Disallows A.I. from grabbing goody huts.
+-- ===========================================================================
+
+print("=== Human Only Goody Huts (Gameplay) Loading ===")
+
 local IMPROVEMENT_GOODY_HUT = GameInfo.Improvements["IMPROVEMENT_GOODY_HUT"].Index;
 local SAVE_KEY = "HumanOnlyGoodyHuts";
 
@@ -58,12 +65,14 @@ function RestoreGoodyHuts()
     Game:SetProperty(SAVE_KEY, SerializeHuts(huts));
 end
 
-function OnPlayerTurnActivated(playerID, bIsFirstTurn)
+function OnPlayerTurnActivated(playerID)
     local pPlayer = Players[playerID];
     if pPlayer:IsHuman() then
         RestoreGoodyHuts();
     end
 end
+
+Events.PlayerTurnActivated.Add(OnPlayerTurnActivated);
 
 function OnPlayerTurnDeactivated(playerID)
     local pPlayer = Players[playerID];
@@ -72,8 +81,6 @@ function OnPlayerTurnDeactivated(playerID)
     end
 end
 
-
--- Register Events
-Events.PlayerTurnActivated.Add(OnPlayerTurnActivated);
 Events.PlayerTurnDeactivated.Add(OnPlayerTurnDeactivated);
-print("Human Only Goody Huts loaded successfully!");
+
+print("=== Human Only Goody Huts (Gameplay) Loading ===")

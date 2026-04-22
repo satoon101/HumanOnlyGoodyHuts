@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Mod id="1e4c7229-7735-473d-8a38-98039e61a683" version="1">
     <Properties>
         <Name>Human only Goody Huts.</Name>
@@ -7,13 +8,13 @@
         <CompatibleVersions>2.0</CompatibleVersions>
     </Properties>
 
-    <Files>
-        <File>scripts/HumanOnlyGoodyHuts.lua</File>
-    </Files>
+    <InGameActions>
+        <AddGameplayScripts id="HumanGoodyHutsScript">
+            <File>scripts/Gameplay/HumanOnlyGoodyHuts.lua</File>
+        </AddGameplayScripts>
+    </InGameActions>
 
-    <Components>
-        <GameplayScripts>
-            <File>scripts/HumanOnlyGoodyHuts.lua</File>
-        </GameplayScripts>
-    </Components>
+    <Files>
+        <File>scripts/Gameplay/HumanOnlyGoodyHuts.lua</File>
+    </Files>
 </Mod>
