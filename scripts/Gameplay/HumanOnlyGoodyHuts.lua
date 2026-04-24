@@ -5,13 +5,13 @@
 
 print("=== Human Only Goody Huts (Gameplay) Loading ===")
 
-local IMPROVEMENT_GOODY_HUT = GameInfo.Improvements["IMPROVEMENT_GOODY_HUT"].Index;
-local SAVE_KEY = "HumanOnlyGoodyHuts";
+local IMPROVEMENT_GOODY_HUT = GameInfo.Improvements["IMPROVEMENT_GOODY_HUT"].Index
+local SAVE_KEY = "HumanOnlyGoodyHuts"
 
 function SerializeHuts(huts)
     local s = ""
     for _, pos in ipairs(huts) do
-        s = s ..pos.x .. "," .. pos.y .. ";"
+        s = s .. pos.x .. "," .. pos.y .. ";"
     end
     return s
 end
@@ -29,21 +29,21 @@ function DeserializeHuts(s)
 end
 
 function HideGoodyHuts()
-    local iW, iH = Map.GetGridSize();
+    local iW, iH = Map.GetGridSize()
     local savedData = Game:GetProperty(SAVE_KEY)
     local huts = DeserializeHuts(savedData)
 
     -- Loop through all plots and store/remove any goody huts
     for x = 0, iW - 1 do
         for y = 0, iH - 1 do
-            local pPlot = Map.GetPlot(x, y);
+            local pPlot = Map.GetPlot(x, y)
             if pPlot:GetImprovementType() == IMPROVEMENT_GOODY_HUT then
-                table.insert(huts, {x = x, y = y});
-                ImprovementBuilder.SetImprovementType(pPlot, -1);
+                table.insert(huts, {x = x, y = y})
+                ImprovementBuilder.SetImprovementType(pPlot, -1)
             end
         end
     end
-    Game:SetProperty(SAVE_KEY, SerializeHuts(huts));
+    Game:SetProperty(SAVE_KEY, SerializeHuts(huts))
 end
 
 function RestoreGoodyHuts()
@@ -62,25 +62,25 @@ function RestoreGoodyHuts()
             table.remove(huts, i)
         end
     end
-    Game:SetProperty(SAVE_KEY, SerializeHuts(huts));
+    Game:SetProperty(SAVE_KEY, SerializeHuts(huts))
 end
 
 function OnPlayerTurnActivated(playerID)
-    local pPlayer = Players[playerID];
+    local pPlayer = Players[playerID]
     if pPlayer:IsHuman() then
-        RestoreGoodyHuts();
+        RestoreGoodyHuts()
     end
 end
 
-Events.PlayerTurnActivated.Add(OnPlayerTurnActivated);
+Events.PlayerTurnActivated.Add(OnPlayerTurnActivated)
 
 function OnPlayerTurnDeactivated(playerID)
-    local pPlayer = Players[playerID];
+    local pPlayer = Players[playerID]
     if pPlayer:IsHuman() then
-        HideGoodyHuts();
+        HideGoodyHuts()
     end
 end
 
-Events.PlayerTurnDeactivated.Add(OnPlayerTurnDeactivated);
+Events.PlayerTurnDeactivated.Add(OnPlayerTurnDeactivated)
 
 print("=== Human Only Goody Huts (Gameplay) Loading ===")
